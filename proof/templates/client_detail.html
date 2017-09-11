@@ -1,0 +1,83 @@
+
+
+
+{% extends 'base.html' %}
+
+{%block client_detail%}
+
+<div class="col">
+ {% if client_detail %}
+
+<div class="row">
+<div class="card" style="width: 20rem;">
+  <div class="card-block">
+    <h4 class="card-title">{{client_detail.name}}</h4>
+    <p class="card-text">Descripcion del Client {{client_detail.pk}}</p>
+  </div>
+  <ul class="list-group list-group-flush">
+    <li class="list-group-item"> Nombre: {{client_detail.name}}</li>
+    <li class="list-group-item">Empresa: {{client_detail.company}}</li>
+    <li class="list-group-item">Contraseña: {{client_detail.password}}</li>
+    <li class="list-group-item">E-mail: {{client_detail.mail}}</li>
+    <li class="list-group-item">Nº Targeta: {{client_detail.n_targeta}}</li>
+    <li class="list-group-item">Nº Secreto: {{client_detail.n_secret}}</li>
+    <li class="list-group-item">Telefono: {{client_detail.contact_number}}</li>
+    <li class="list-group-item">Telefono: {{client_detail.create_date}}</li>
+  </ul>
+  <div class="card-block">
+    <a href="/edit_client/{{client_detail.pk}}" class="btn btn-primary">edit</a>
+    <a href="/delete_client/{{client_detail.pk}}" class="btn btn-primary">delte</a>
+  </div>
+</div>
+
+
+
+
+
+<div class="col">
+  <a href="#" class="list-group-item active">
+    Engine's
+  </a>
+
+<table class="table table-hover">
+  <thead>
+    <tr>
+      <th>Nombre </th>
+      <th>Client</th>
+      <th>Start Date</th>
+      <th colspan="2"><a href="/get_engine" class="btn btn-primary">+ add</a></th>
+    </tr>
+  </thead>
+{%for engine in engines%}
+  <tbody>
+    <tr>
+      <td>{{engine.name}}</td>
+      <td>{{ engine.client }}</a></td>
+      <td>{{engine.start_date}}</td></a>
+      <td><a href="/engine_detail/{{engine.pk}}" class="btn btn-primary">detail</a></td>
+      <td><a href="/edit_engine/{{engine.pk}}" class="btn btn-primary">edit</a></td>
+      <td><a href="/delete_engine/{{engine.pk}}" class="btn btn-primary">delte</a></td>
+    </tr>
+
+  </tbody>
+
+
+{% empty %}
+  <li>No engine yet.</li>
+{%endfor%}
+</table>
+</div>
+
+</div>
+
+
+{%endif%}
+
+
+</div>
+
+
+
+{% endblock %}
+
+

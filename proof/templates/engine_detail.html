@@ -1,0 +1,116 @@
+{% extends 'base.html' %}
+
+{%block engine_detail%}
+
+<div class="col">
+ {% if engine_detail %}
+
+<div class="row">
+<div class="card" style="width: 20rem;">
+  <div class="card-block">
+    <h4 class="card-title">{{engine_detail.name}}</h4>
+    <p class="card-text">descripcion del engine {{engine_detail.pk}}</p>
+  </div>
+  <ul class="list-group list-group-flush">
+    <li class="list-group-item">{{engine_detail.name}}</li>
+    <li class="list-group-item">{{engine_detail.client}}</li>
+    <li class="list-group-item">{{engine_detail.create_date}}</li>
+  </ul>
+  <div class="card-block">
+    <a href="/edit_engine/{{engine_detail.pk}}" class="btn btn-primary">edit</a>
+    <a href="/delete_engine/{{engine_detail.pk}}" class="btn btn-primary">delte</a>
+  </div>
+</div>
+
+
+<div class="col-7">
+  <a href="#" class="list-group-item active">
+    Files Queries
+  </a>
+
+<table class="table table-hover">
+  <thead>
+    <tr>
+      <th>Nombre </th>
+      <th>Engine</th>
+      <th>File Style</th>
+      <th>File </th>
+      <th colspan="2"><a href="/get_file_query" class="btn btn-primary">+ add</a></th>
+    </tr>
+  </thead>
+{%for file_query in file_queries%}
+  <tbody>
+    <tr>
+      <td>{{file_query.name}}</td>
+      <td>{{ file_query.engine }}</a></td>
+      <td>{{file_query.file_style}}</td></a>
+      <td><a href="{{file_query.file.url}}">{{file_query.file.url}}</td></a>
+      <td><a href="/filequery_detail/{{file_query.pk}}" class="btn btn-primary">detail</a></td>
+      <td><a href="/edit_filequery/{{file_query.pk}}" class="btn btn-primary">edit</a></td>
+      <td><a href="/delete_filequery/{{file_query.pk}}" class="btn btn-primary">delte</a></td>
+    </tr>
+
+  </tbody>
+
+
+{% empty %}
+  <li>No engine yet.</li>
+{%endfor%}
+</table>
+
+
+
+
+
+
+  <a href="#" class="list-group-item active">
+    Files Results
+  </a>
+
+<table class="table table-hover">
+  <thead>
+    <tr>
+      <th>Nombre </th>
+      <th>Engine</th>
+      <th>File Style</th>
+      <th>File </th>
+      <th>Start Date</th>
+    </tr>
+  </thead>
+{%for file_result in file_results%}
+  <tbody>
+    <tr>
+      <td>{{file_result.name}}</td>
+      <td>{{ file_result.engine }}</a></td>
+      <td>{{file_result.file_style}}</td></a>
+      <td>{{file_result.file}}</td></a>
+      <td>{{file_result.create_date}}</td></a>
+      <td><a href="#" class="btn btn-primary">detail</a></td>
+      <td><a href="#" class="btn btn-primary">edit</a></td>
+      <td><a href="#" class="btn btn-primary">delte</a></td>
+    </tr>
+
+  </tbody>
+
+
+{% empty %}
+  <li>No engine yet.</li>
+{%endfor%}
+</table>
+</div>
+
+
+
+
+ {%else%}
+</div>
+<p>no hay resultados</p>
+
+{%endif%}
+
+
+</div>
+
+
+{% endblock %}
+
